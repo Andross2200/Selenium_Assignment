@@ -55,6 +55,7 @@ public class SeleniumTest {
         logoutButton.click();
 
         WebElement logoutConfirmationPopup = waitVisibiiltyAndFindElement(popupLocator);
+        System.out.println(logoutConfirmationPopup.getText());
         Assert.assertTrue("Correct credentials logout", logoutConfirmationPopup.getText().contains("You logged out of the secure area!"));
     }
 
