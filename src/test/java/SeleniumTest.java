@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,7 +26,8 @@ public class SeleniumTest {
     @Before
     public void setup() throws MalformedURLException {
         ChromeOptions options = new ChromeOptions();
-        this.driver = new RemoteWebDriver(new URL("http://selenium:4444/wd/hub"), options);
+//        this.driver = new RemoteWebDriver(new URL("http://selenium:4444/wd/hub"), options);
+        this.driver = new ChromeDriver();
         this.driver.manage().window().maximize();
         this.wait = new WebDriverWait(driver, 10);
     }
