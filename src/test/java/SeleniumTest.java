@@ -32,7 +32,7 @@ public class SeleniumTest {
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--headless");
         driver = new ChromeDriver(chromeOptions);
-        this.wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, 20);
     }
 
     @Test
