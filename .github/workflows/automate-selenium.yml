@@ -7,6 +7,11 @@ jobs:
     permissions:
       contents: read
 
+    services:
+      selenium:
+        image: selenium/standalone-${{ github.event.inputs.browser }}
+        options: --shm-size=2gb
+
     steps:
     - name: Checkout project
       uses: actions/checkout@v4
@@ -19,6 +24,10 @@ jobs:
       uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
       with:
         gradle-version: '8.9'
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@v1
+      with:
+        install-chromedriver: true
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Run tests
