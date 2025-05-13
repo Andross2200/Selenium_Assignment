@@ -8,9 +8,18 @@ jobs:
       contents: read
 
     services:
+      novnc:
+        image: javanile/novnc
+        env:
+          REMOTE_HOST: localhost
+          REMOTE_PORT: 5900
       selenium:
-        image: selenium/standalone-chrome:3.141.59
+        image: selenium/standalone-chrome-debug:3.11.0-californium
         options: --shm-size=2gb
+        env:
+          VNC_NO_PASSWORD: 1
+          SCREEN_WIDTH: 1800
+          SCREEN_HEIGHT: 960
 
     steps:
     - name: Checkout project
