@@ -42,6 +42,14 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 WORKDIR /home/selenium/
 ENV HOME=/home/selenium/
 
+RUN wget https://storage.googleapis.com/chrome-for-testing-public/136.0.7103.94/linux64/chromedriver-linux64.zip && \
+    unzip chromedriver-linux64.zip && \
+    rm chromedriver-linux64.zip
+
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    apt-get install -y ./google-chrome-stable_current_amd64.deb
+
+
 USER selenium
 
 CMD ["/bin/bash"]

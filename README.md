@@ -12,6 +12,6 @@ The tests can be run locally using Docker. Follow these steps to run the tests o
 2. Clone this repository to your machine.
 3. In terminal open the directory of repository.
 4. Run following command to start the Docker containers: ```docker compose up```
-5. When the containers are up and running, execute following command to enter inside the container: ```docker exec -it selenium-assignment-ubuntu-1 bash```
+5. When the containers are up and running, execute following command to enter inside the container: ```docker exec -it selenium_assignment-ubuntu-1 bash```
 6. In the container go to the test directory: ```cd tests```
 7. Run gradle tests with ```gradle test```
