@@ -3,15 +3,10 @@ package pages;
 import jakarta.mail.MessagingException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import util.EmailUtil;
 
-public class SignInPage {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
-
+public class SignInPage extends BasePage{
     // Locators
     private final By usernameFieldLocator =
             By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[1]/div/div/div/div[2]/div/form/div[1]/input");
@@ -28,17 +23,11 @@ public class SignInPage {
     };
 
     public SignInPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         this.driver.get("https://store.steampowered.com/login/");
-        this.wait = new WebDriverWait(driver, 10);
         if(!driver.getTitle().equals("Sign In")) {
             throw new IllegalStateException("This is not a SignIn page. Current page is " + driver.getTitle());
         }
-    }
-
-    protected WebElement waitAndReturnElement(By locator) {
-        this.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        return this.driver.findElement(locator);
     }
 
     public HomePage loginUser(String username, String password) throws InterruptedException {
@@ -66,9 +55,5 @@ public class SignInPage {
             throw new RuntimeException(e);
         }
         return emailBody.split("Login Code")[1].substring(0,5);
-    }
-
-    public String getPageContent() {
-        return this.driver.getPageSource();
     }
 }
