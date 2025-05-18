@@ -6,17 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.HomePage;
 
-public class HomePageTest {
-    private WebDriver driver;
-
-    @Before
-    public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        this.driver = new ChromeDriver(options);
-        this.driver.manage().window().maximize();
-    }
-
+public class HomePageTest extends BaseTest {
+    
     @Test
     public void testLoadingCorrectness() {
         HomePage homePage = new HomePage(driver);
