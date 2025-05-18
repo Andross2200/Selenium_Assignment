@@ -11,6 +11,8 @@ public class HomePage {
     protected WebDriverWait wait;
 
     // Locators
+    private final By usernameLocator = By.xpath("//*[@id=\"account_pulldown\"]");
+    private final By SignOutButtonLocator = By.xpath("//*[@id=\"account_dropdown\"]/div/a[4]");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -21,12 +23,13 @@ public class HomePage {
         }
     }
 
-    //TODO: Try to implement this method by finding the element that contains this text.
-    // Currently, the tester cannot find this element: /html/body/div[1]/div[7]/div[1],
-    // Which contains the text needed to verify the login.
-    // But as it can be seen, the element is present (this test would fail otherwise).
     public Boolean isUserSignedIn() {
-        return this.driver.getPageSource().contains("andre.shamanaev");
+        return this.waitAndReturnElement(usernameLocator).getText().contains("andre.shamanaev");
+    }
+
+    public void signOut() {
+        this.waitAndReturnElement(usernameLocator).click();
+        this.waitAndReturnElement(SignOutButtonLocator).click();
     }
 
     protected WebElement waitAndReturnElement(By locator) {
