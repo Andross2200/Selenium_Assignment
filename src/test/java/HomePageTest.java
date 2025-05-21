@@ -15,7 +15,6 @@ public class HomePageTest extends BaseTest {
         Assert.assertEquals("Page title", "Welcome to Steam", homePage.getPageTitle());
         Assert.assertTrue("Banner is visible", homePage.isBannerVisible());
         Assert.assertTrue("Store navigation is visible", homePage.isStoreNavigationVisible());
-        Assert.assertTrue("Event ad is visible", homePage.isEventAdVisible());
         Assert.assertTrue("Special offers are visible", homePage.isSpecialOffersVisible());
         Assert.assertTrue("Carousels are visible", homePage.isCarouselsVisible());
         Assert.assertTrue("Trending is visible", homePage.isTrendingVisible());

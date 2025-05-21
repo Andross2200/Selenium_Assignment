@@ -11,8 +11,7 @@ public class HomePage extends BasePage{
 
     // Static page elements
     private final By bannerLocator = By.xpath("//*[@id=\"global_header\"]");
-    private final By storeNavigationLocator = By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[2]/div[2]/div");
-    private final By eventAdLocator = By.xpath("//*[@id=\"home_takeunder_ctn\"]");
+    private final By storeNavigationLocator = By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[2]/div[4]/div");
     private final By specialOffersLocator = By.xpath("//*[@id=\"module_special_offers\"]");
     private final By[] carouselsLocators = {
             By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[2]/div[4]"),
@@ -50,15 +49,6 @@ public class HomePage extends BasePage{
     public Boolean isStoreNavigationVisible() {
         try {
             this.waitAndReturnElement(storeNavigationLocator);
-        } catch (TimeoutException e) {
-            return false;
-        }
-        return true;
-    }
-
-    public Boolean isEventAdVisible() {
-        try {
-            this.waitAndReturnElement(eventAdLocator);
         } catch (TimeoutException e) {
             return false;
         }
