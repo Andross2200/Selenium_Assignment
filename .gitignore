@@ -5,3 +5,4 @@ gradle
 gradlew.bat
 gradlew
 chromedriver.exe
+src/test/java/config/config.properties
