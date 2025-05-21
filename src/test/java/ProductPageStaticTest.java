@@ -23,11 +23,11 @@ public class ProductPageStaticTest extends BaseTest {
 
         Assert.assertEquals("Page title is correct", this.productName + " on Steam", page.getPageTitle());
         Assert.assertEquals("Product name on page", this.productName, page.getProductName());
-        Assert.assertTrue("Product highlight is present", page.isHighlightPresent());
-        Assert.assertTrue("Product metadata is present", page.isProductMetadataPresent());
-        Assert.assertTrue("Product description is present", page.isDescriptionPresent());
-        Assert.assertTrue("Related products are present", page.isRelatedProductsPresent());
-        Assert.assertTrue("Reviews are present", page.isReviewsPresent());
+        Assert.assertTrue("Product highlight is present", page.isHighlightVisible());
+        Assert.assertTrue("Product metadata is present", page.isProductMetadataVisible());
+        Assert.assertTrue("Product description is present", page.isDescriptionVisible());
+        Assert.assertTrue("Related products are present", page.isRelatedProductsVisible());
+        Assert.assertTrue("Reviews are present", page.isReviewsVisible());
     }
 
     @Parameterized.Parameters

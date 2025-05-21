@@ -8,11 +8,8 @@ import java.io.InputStreamReader;
 import java.util.Base64;
 import java.util.Properties;
 
-/**
- * This class establishes connection to yandex email account andre.shamnaev@yandex.ru.
- * The class is capable of extracting unseen messages received by this email address.
- */
 public class EmailUtil {
+
     private final Properties props;
     private final Session session;
     private final Store store;
@@ -36,13 +33,6 @@ public class EmailUtil {
         }
     }
 
-    /**
-     * This method return a body of an unseen email received from given sender with given subject line.
-     * If there is not matching email, an empty string is returned.
-     * @param sender
-     * @param subject
-     * @return String body of an email or an empty string
-     */
     public String getNewEmailBody(String sender, String subject) throws MessagingException {
         String emailBody = "empty";
         this.folder.open(Folder.READ_WRITE);

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage{
+
     // Interactive elements
     private final By usernameLocator = By.xpath("//*[@id=\"account_pulldown\"]");
     private final By SignOutButtonLocator = By.xpath("//*[@id=\"account_dropdown\"]/div/a[4]");
@@ -87,8 +88,8 @@ public class HomePage extends BasePage{
     }
 
     public SearchPage searchForProduct(String searchString) {
-        WebElement seachBar = this.waitAndReturnElement(searchBarLocator);
-        seachBar.sendKeys(searchString+"\n");
+        WebElement searchBar = this.waitAndReturnElement(searchBarLocator);
+        searchBar.sendKeys(searchString+"\n");
 
         return new SearchPage(this.driver, searchString);
     }

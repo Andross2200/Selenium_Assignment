@@ -4,10 +4,10 @@ import jakarta.mail.MessagingException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import util.EmailUtil;
 
 public class SignInPage extends BasePage{
+
     // Locators
     private final By usernameFieldLocator =
             By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[1]/div/div/div/div[2]/div/form/div[1]/input");
@@ -34,13 +34,12 @@ public class SignInPage extends BasePage{
     }
 
     public HomePage loginUser(String username, String password) throws InterruptedException {
-        // Enter username and password to initiate login process
         this.waitAndReturnElement(usernameFieldLocator).sendKeys(username);
         this.waitAndReturnElement(passwordFieldLocator).sendKeys(password);
         this.waitAndReturnElement(loginButtonLocator).click();
+
         if (this.isSteamGuardRequired()) {
-            // Verify login with code from email
-            Thread.sleep(10000); // This test is needed to give Steam time to send the confirmation email
+            Thread.sleep(10000);
             String code = getLoginVerificationCode();
             System.out.println("Code: " + code);
             for (int i = 0; i < code.length(); i++) {

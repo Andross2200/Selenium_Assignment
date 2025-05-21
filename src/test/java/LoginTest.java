@@ -1,8 +1,5 @@
 import org.junit.*;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import pages.HomePage;
 import pages.SignInPage;
 import util.MyConfig;

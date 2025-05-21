@@ -26,7 +26,7 @@ public class ProductPage extends BasePage{
         return this.waitAndReturnElement(productNameLocator).getText();
     }
 
-    public Boolean isHighlightPresent() {
+    public Boolean isHighlightVisible() {
         try {
             this.waitAndReturnElement(productHighlightsLocator);
         } catch (TimeoutException e) {
@@ -35,7 +35,7 @@ public class ProductPage extends BasePage{
         return true;
     }
 
-    public Boolean isProductMetadataPresent() {
+    public Boolean isProductMetadataVisible() {
         try {
             this.waitAndReturnElement(productMetaDataLocator);
         } catch (TimeoutException e) {
@@ -44,7 +44,7 @@ public class ProductPage extends BasePage{
         return true;
     }
 
-    public Boolean isDescriptionPresent() {
+    public Boolean isDescriptionVisible() {
         try {
             this.waitAndReturnElement(productDescriptionLocator);
         } catch (TimeoutException e) {
@@ -53,7 +53,7 @@ public class ProductPage extends BasePage{
         return true;
     }
 
-    public Boolean isRelatedProductsPresent() {
+    public Boolean isRelatedProductsVisible() {
         try {
             this.waitAndReturnElement(relatedProductsLocator);
         } catch (TimeoutException e) {
@@ -62,7 +62,7 @@ public class ProductPage extends BasePage{
         return true;
     }
 
-    public Boolean isReviewsPresent() {
+    public Boolean isReviewsVisible() {
         try {
             this.waitAndReturnElement(reviewsLocator);
         } catch (TimeoutException e) {
