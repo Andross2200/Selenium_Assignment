@@ -2,6 +2,7 @@ package pages;
 
 import jakarta.mail.MessagingException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import util.EmailUtil;
@@ -14,6 +15,8 @@ public class SignInPage extends BasePage{
             By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[1]/div/div/div/div[2]/div/form/div[2]/input");
     private final By loginButtonLocator =
             By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[1]/div/div/div/div[2]/div/form/div[4]/button");
+    private final By steamGuardRequestLocator =
+            By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[1]/div/div/div/div[2]/form/div/div[1]/div[2]");
     private final By[] verificationCodeLocators = {
             By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[1]/div/div/div/div[2]/form/div/div[2]/div[1]/div/input[1]"),
             By.xpath("//*[@id=\"responsive_page_template_content\"]/div[3]/div[1]/div/div/div/div[2]/form/div/div[2]/div[1]/div/input[2]"),
@@ -35,12 +38,14 @@ public class SignInPage extends BasePage{
         this.waitAndReturnElement(usernameFieldLocator).sendKeys(username);
         this.waitAndReturnElement(passwordFieldLocator).sendKeys(password);
         this.waitAndReturnElement(loginButtonLocator).click();
-        // Verify login with code from email
-        Thread.sleep(10000); // This test is needed to give Steam time to send the confirmation email
-        String code = getLoginVerificationCode();
-        System.out.println("Code: " + code);
-        for (int i = 0; i < code.length(); i++) {
-            this.waitAndReturnElement(verificationCodeLocators[i]).sendKeys(String.valueOf(code.charAt(i)));
+        if (this.isSteamGuardRequired()) {
+            // Verify login with code from email
+            Thread.sleep(10000); // This test is needed to give Steam time to send the confirmation email
+            String code = getLoginVerificationCode();
+            System.out.println("Code: " + code);
+            for (int i = 0; i < code.length(); i++) {
+                this.waitAndReturnElement(verificationCodeLocators[i]).sendKeys(String.valueOf(code.charAt(i)));
+            }
         }
         Thread.sleep(10000);
         return new HomePage(driver);
@@ -55,5 +60,14 @@ public class SignInPage extends BasePage{
             throw new RuntimeException(e);
         }
         return emailBody.split("Login Code")[1].substring(0,5);
+    }
+
+    private Boolean isSteamGuardRequired() {
+        try {
+            this.waitAndReturnElement(steamGuardRequestLocator);
+        } catch (TimeoutException e) {
+            return false;
+        }
+        return true;
     }
 }
