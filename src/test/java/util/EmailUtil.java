@@ -24,11 +24,12 @@ public class EmailUtil {
         props.setProperty("mail.imaps.partialfetch", "false");
         props.put("mail.imap.ssl.enable", "true");
         props.put("mail.mime.base64.ignoreerrors", "true");
+        MyConfig config = new MyConfig();
 
         try {
             this.session = Session.getDefaultInstance(props, null);
             this.store = session.getStore("imap");
-            this.store.connect("imap.yandex.ru", 993, "", "");
+            this.store.connect(config.getProperty("mail.imap"), 993, config.getProperty("mail.address"), config.getProperty("mail.password"));
             this.folder = store.getFolder("Inbox");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
