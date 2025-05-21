@@ -7,11 +7,23 @@ on [Steam Store](https://store.steampowered.com/). The requirements and their fu
 [fulfilment sheet](https://docs.google.com/spreadsheets/d/1SAckjKkOG6m_PRI45P-G8R4fjVl7bGJ9VpyVrO9-a1Q/edit?usp=sharing).
 
 # Running tests
-The tests can be run locally using Docker. Follow these steps to run the tests on your machine:
-1. Ensure that you have Docker installed on your machine.
-2. Clone this repository to your machine.
-3. In terminal open the directory of repository.
-4. Run following command to start the Docker containers: ```docker compose up```
-5. When the containers are up and running, execute following command to enter inside the container: ```docker exec -it selenium_assignment-ubuntu-1 bash```
-6. In the container go to the test directory: ```cd tests```
-7. Run gradle tests with ```gradle test```
+The tests were run on a Windows machine using Google Chrome browser and Chrome Drive.
+To run the tests on your machine do the following steps:
+1. Clone the repository to your machine.
+2. Download Chrome Drive executable and put it into the root directory of this project.
+3. The project requires login credentials to run some of the tests. Contact me for the file with credentials and put it
+into the ```src/test/java/config``` directory.
+4. Ensure that you have Gradle to compile and run the tests.
+
+After fulfilling these steps, you should be able to run the selenium tests.
+
+## Using your own credentials
+You can use your own credentials for the tests. For this create a ```config.properties``` file in 
+```src/test/java/config``` directory and include following values:
+ - ```steam.username```
+ - ```steam.password```
+ - ```mail.imap```
+ - ```mail.address```
+ - ```mail.password```
+
+The email must be the same that is used by Steam to verify your login with SteamGuard.
