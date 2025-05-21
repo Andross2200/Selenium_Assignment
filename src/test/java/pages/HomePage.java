@@ -3,11 +3,13 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class HomePage extends BasePage{
     // Interactive elements
     private final By usernameLocator = By.xpath("//*[@id=\"account_pulldown\"]");
     private final By SignOutButtonLocator = By.xpath("//*[@id=\"account_dropdown\"]/div/a[4]");
+    private final By searchBarLocator = By.xpath("//*[@id=\"store_nav_search_term\"]");
 
     // Static page elements
     private final By bannerLocator = By.xpath("//*[@id=\"global_header\"]");
@@ -82,5 +84,12 @@ public class HomePage extends BasePage{
             return false;
         }
         return true;
+    }
+
+    public SearchPage searchForProduct(String searchString) {
+        WebElement seachBar = this.waitAndReturnElement(searchBarLocator);
+        seachBar.sendKeys(searchString+"\n");
+
+        return new SearchPage(this.driver, searchString);
     }
 }
